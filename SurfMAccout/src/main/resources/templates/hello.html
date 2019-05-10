@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="lib/pixeladmin-lite/plugins/images/favicon.png" />
+<title>Dashboard - Poker Backend</title>
+
+<!-- BootStrap CSS -->
+<link rel="stylesheet"
+	href="./assets/lib/bootstrap/dist/css/bootstrap.css" />
+
+<link
+	href="./assets/lib/pixeladmin-lite/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+	rel="stylesheet" />
+<!-- Animation CSS -->
+<link href="./assets/lib/pixeladmin-lite/html/css/animate.css"
+	rel="stylesheet" />
+<!-- Pixeladmin-lite Custom CSS -->
+<link href="./assets/lib/pixeladmin-lite/html/css/style.css"
+	rel="stylesheet" />
+<!-- Color CSS you can use different color css from css/colors folder (default:blue-dark.css) -->
+<link href="./assets/lib/pixeladmin-lite/html/css/colors/blue-dark.css"
+	id="theme" rel="stylesheet" />
+
+
+
+
+
+<script src="./assets/lib/jquery/jquery.js" type="text/javascript"
+	charset="utf-8"></script>
+<title>Hello World!</title>
+</head>
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top m-b-0"></nav>
+		<!-- Left navbar-header -->
+		<div class="navbar-default sidebar" role="navigation"></div>
+
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">
+							<h1 th:inline="text">Hello
+								[[${#httpServletRequest.remoteUser}]]!</h1>
+						</h4>
+					</div>
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"
+						th:include="fragments::adminPageSelector"></div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="white-box">
+							<!-- Render Body -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+			<footer class="footer text-center"> 2017 &copy; Pixel Admin
+				brought to you by wrappixel.com </footer>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+
+
+	<script src="./assets/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+	<!-- Menu Plugin JavaScript -->
+	<script
+		src="./assets/lib/pixeladmin-lite/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<!-- Slimscroll JavaScript -->
+	<script src="./assets/lib/pixeladmin-lite/html/js/jquery.slimscroll.js"></script>
+	<!-- Wave Effects -->
+	<script src="./assets/lib/pixeladmin-lite/html/js/waves.js"></script>
+	<!-- Pixeladmin-lite Custom Theme JavaScript -->
+	<script src="./assets/lib/pixeladmin-lite/html/js/custom.min.js"></script>
+
+
+</body>
+</html>

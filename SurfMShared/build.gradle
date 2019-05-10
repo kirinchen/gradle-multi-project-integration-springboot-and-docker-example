@@ -1,0 +1,16 @@
+bootJar.enabled=false
+jar.enabled=true
+
+
+
+
+dependencies {
+    
+    compile (
+    	"org.springframework.boot:spring-boot-starter-web",
+    	"commons-collections:commons-collections:3.2",
+    	"commons-codec:commons-codec:1.9",
+    	"javax.json:javax.json-api:1.1.4"
+    	
+    		)
+}

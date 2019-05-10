@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en-us" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="/assets/lib/jquery/jquery.js" type="text/javascript"
+	charset="utf-8"></script>
+
+</head>
+<body>
+
+<input type="button" value="Text" onclick="test()" />
+
+<script type="text/javascript">
+
+function test(){
+	var dd = {
+			dataVersion:0,
+			uid:"5dqnr8hQEoBW"
+			};
+	$.ajax({
+		url : 'http://192.168.1.103:8080/api/v1/xgun/player/sync',
+	    headers: {
+	        'Authorization':'7B4731B6B6315D16639C95B2E8473673',
+	        'Content-Type':'application/json'
+	    },
+		type : "POST",
+		data :  JSON.stringify(dd),
+		contentType : "application/json; charset=utf-8",
+		dataType : 'json',
+		success : function(msg) {
+			alert(msg);
+		},
+		error : function(xhr, ajaxOptions, thrownError) {
+			alert(xhr.status);
+			alert(thrownError);
+		}
+	});
+	
+}
+
+</script>
+
+
+</body>
+</html>

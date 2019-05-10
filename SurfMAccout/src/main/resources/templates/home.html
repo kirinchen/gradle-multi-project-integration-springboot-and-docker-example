@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Spring Security Example</title>
+<script src="./assets/lib/jquery/jquery.js" type="text/javascript"
+	charset="utf-8"></script>
+</head>
+<body>
+	<h1>Welcome!</h1>
+
+	<div sec:authorize="hasAuthority('ADMIN111')" > Has Authority ADMIN </div> 
+	<div sec:authentication="name"></div> <!-- works fine -->
+	<div sec:authentication="principal.authorities"></div> <!-- works fine -->
+	<div  sec:authorize="isAuthenticated()" >true</div> <!-- works fine -->
+	<div th:text="${#vars.role_admin}"></div> <!--Works fine -->
+
+	<p>
+		Click <a th:href="@{/hello}">管理後台</a> .
+	</p>
+	
+	<p>
+		Admin <a th:href="@{/admin/coinManager}">here</a> to coinManager.
+	</p>
+
+	<input type="button" value="Reload img" onclick="reloadImg()" />
+
+	<img id="robotImg" src="/api/v1/account/derobotcode" />
+
+	<script th:inline="javascript">
+		function reloadImg() {
+			d = new Date();
+			$("#robotImg").attr("src",
+					"/api/v1/account/derobotcode#" + d.getTime());
+		}
+	</script>
+
+</body>
+</html>

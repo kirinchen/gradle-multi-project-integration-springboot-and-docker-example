@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="lib/pixeladmin-lite/plugins/images/favicon.png" />
+<title>Summary - Poker Backend</title>
+
+<!-- BootStrap CSS -->
+<link rel="stylesheet"
+	href="/assets/lib/bootstrap/dist/css/bootstrap.css" />
+<!-- Animation CSS -->
+<link href="/assets/lib/pixeladmin-lite/html/css/animate.css"
+	rel="stylesheet" />
+<!-- Pixeladmin-lite Custom CSS -->
+<link href="/assets/lib/pixeladmin-lite/html/css/style.css"
+	rel="stylesheet" />
+<!-- Color CSS you can use different color css from css/colors folder (default:blue-dark.css) -->
+<link href="/assets/lib/pixeladmin-lite/html/css/colors/blue-dark.css"
+	id="theme" rel="stylesheet" />
+<!-- jQuery UI CSS -->
+<link href="/assets/lib/jquery-ui/jquery-ui.min.css" id="theme"
+	rel="stylesheet" />
+
+<script src="/assets/lib/jquery/jquery.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="/assets/lib/knockout/knockout-3.4.2.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="/assets/lib/date.js"
+	type="text/javascript" charset="utf-8"></script>
+
+<script src="/js/Report/Report.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="/js/Report/ReportModel.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="/js/Report/Row.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top m-b-0"></nav>
+		<!-- Left navbar-header -->
+		<div class="navbar-default sidebar" role="navigation"></div>
+
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Summary Page</h4>
+					</div>
+						<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12" th:include="fragments::adminPageSelector" />
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="white-box">
+
+							<div>
+								<input type="radio" name="range" value="weak" data-bind="checked: rangeType"  /> 週
+								<input type="radio" name="range" value="month" data-bind="checked: rangeType" /> 月
+							</div>
+							
+							<br />
+							
+							
+							<div>
+								<input type="button" id="previousBtn" value="往前" /> 
+								<input type="button" id="nextBtn" value="往後" /> 
+							</div>
+							
+							<br />
+							
+
+							<div>
+								<label for="startDate">From</label> <input type="text"
+									class="text ui-widget-content ui-corner-all" id="startDate"
+									name="startDate" readonly="readonly" /> <label for="endDate">to</label>
+								<input type="text" class="text ui-widget-content ui-corner-all"
+									id="endDate" name="endDate" readonly="readonly" />
+								<button class="btnQuery">查詢</button>
+							</div>
+							<!-- Render Body -->
+							<div class="table-responsive" style="margin-top: 20px;">
+								<table class="table" style="width: 50%">
+									<thead>
+										<tr>
+											<th>項目名稱</th>
+											<th>內容</th>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: rows">
+										<tr>
+											<td data-bind="text: name()"></td>
+											<td data-bind="text: value()"></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+			<footer class="footer text-center"> 2017 &copy; Pixel Admin
+				brought to you by wrappixel.com </footer>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+
+
+	<script src="/assets/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="/assets/lib/pixeladmin-lite/html/js/jquery.slimscroll.js"></script>
+	<!-- Wave Effects -->
+	<script src="/assets/lib/pixeladmin-lite/html/js/waves.js"></script>
+	<!-- jQuery UI JavaScript -->
+	<script src="/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+
+	<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var externalFetchReportUrl = [[${@environment.getProperty('externalFetchReportUrl')}]];
+   // alert(externalFetchReportUrl);
+
+/*]]>*/
+</script>
+
+</body>
+</html>

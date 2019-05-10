@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Login Page - Poker</title>   
+    <link href="./assets/lib/login/css/style.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- Common -->
+
+</head>
+<body>
+    <div class="main">
+		<div class="login">
+			<div class="login-top">
+				<img src="./assets/lib/login/images/p.png" />
+			</div>
+			<h1>Portal Login</h1>
+			
+	       <div th:if="${param.error}">
+    	        Invalid username and password.
+        	</div>
+	        <div th:if="${param.logout}">
+    	        You have been logged out.
+	        </div>
+			
+			<div class="login-bottom">                
+                <form th:action="@{/login}" method="post">
+                    <div><input type="text" name="username" value="admin@poker.com" /></div>
+                    <div class="password"><input type="password" name="password" placeholder="Password" /></div>
+                    <div><input type="submit" value="Sign In"/></div>
+                </form>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+	  <p>copy 2015 Flat Portal Login Form . All rights reserved | Design by <a href="http://w3layouts.com">W3layouts.</a></p>
+	</div>
+
+</body>
+</html>

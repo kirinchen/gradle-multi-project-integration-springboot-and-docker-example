@@ -1,0 +1,81 @@
+plugins {
+    id "org.springframework.boot" version "2.1.4.RELEASE"
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+}
+
+ext.spring_cloud_version = "Greenwich.SR1"
+ext['lombok.version'] = "1.18.4"
+
+allprojects {
+  repositories {
+    jcenter() 
+  }
+}
+
+subprojects {
+  version = "2.1.4"
+
+  apply plugin: "java"
+  apply plugin: "org.springframework.boot"
+  apply plugin: "io.spring.dependency-management"
+
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
+
+  def defaultEncoding = 'UTF-8'
+  tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
+
+  javadoc {
+    options.encoding = defaultEncoding
+    options.addBooleanOption('Xdoclint:none', true)
+  }
+
+  compileJava.dependsOn(processResources)
+
+  test {
+    include "**/model/**", "**/controller/**", "**/usecase/**", "**/util/**", "**/context/**"
+  }
+
+  springBoot {
+    buildInfo()
+  }
+
+  dependencyManagement {
+    imports {
+      mavenBom "org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}"
+      mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+  }
+
+  dependencies {
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    annotationProcessor "org.projectlombok:lombok"
+    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
+    compileOnly "org.projectlombok:lombok"
+    implementation "commons-io:commons-io:2.6"
+	implementation "javax.inject:javax.inject:1"
+	implementation "net.sf.dozer:dozer:5.5.1"
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+    runtime "com.h2database:h2"
+    testAnnotationProcessor "org.projectlombok:lombok"
+    testCompileOnly "org.projectlombok:lombok"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+  }
+}
+
+project(':SurfAccountSDK') {
+  dependencies {
+    implementation project(':SurfMShared')
+  }
+}
+
+project(':SurfMAccout') {
+  dependencies {
+  	implementation project(':SurfMShared')
+    implementation project(':SurfAccountSDK')
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+}

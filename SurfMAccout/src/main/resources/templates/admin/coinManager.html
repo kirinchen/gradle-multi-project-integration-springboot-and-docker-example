@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="lib/pixeladmin-lite/plugins/images/favicon.png" />
+<title>Memeber - Poker Backend</title>
+
+<!-- BootStrap CSS -->
+<link rel="stylesheet"
+	href="/assets/lib/bootstrap/dist/css/bootstrap.css" />
+<!-- Animation CSS -->
+<link href="/assets/lib/pixeladmin-lite/html/css/animate.css"
+	rel="stylesheet" />
+<!-- Pixeladmin-lite Custom CSS -->
+<link href="/assets/lib/pixeladmin-lite/html/css/style.css"
+	rel="stylesheet" />
+<!-- Color CSS you can use different color css from css/colors folder (default:blue-dark.css) -->
+<link href="/assets/lib/pixeladmin-lite/html/css/colors/blue-dark.css"
+	id="theme" rel="stylesheet" />
+<!-- jQuery UI CSS -->
+<link href="/assets/lib/jquery-ui/jquery-ui.min.css" id="theme"
+	rel="stylesheet" />
+
+<script src="/assets/lib/jquery/jquery.js" type="text/javascript"
+	charset="utf-8"></script>
+
+<script src="/assets/lib/knockout/knockout-3.4.2.js"
+	type="text/javascript" charset="utf-8"></script>
+
+<script src="/js/CoinManager/CoinManager.js" type="text/javascript"
+	charset="utf-8"></script>
+
+<script src="/js/CoinManager/AppModel.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="/js/CoinManager/User.js" type="text/javascript"
+	charset="utf-8"></script>
+
+
+</head>
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+
+		<!-- Navigation top -->
+		<nav class="navbar navbar-default navbar-static-top m-b-0"></nav>
+
+		<!-- Left sidebar -->
+		<div class="navbar-default sidebar" role="navigation"></div>
+
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Member Page</h4>
+					</div>
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"
+						th:include="fragments::adminPageSelector"></div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="white-box">
+							<!-- Render Body -->
+							<div class="table-responsive">
+
+								<input data-bind="value: phone" type="text" placeholder="搜尋電話" />
+								<input  type="button" value="重新整理"  data-bind="click: tryReflesh" />
+								<table id="memberList" class="table" style="width: 90%">
+									<thead>
+										<tr>
+											<th>電話</th>
+											<th>會員代碼</th>
+											<th>email</th>
+											<th>點數</th>
+											<th>功能</th>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: users">
+										<tr>
+											<td data-bind="text: data().user.phone"></td>
+											<td data-bind="text: data().user.id"></td>
+											<td data-bind="text: data().user.email"></td>
+											<td data-bind="text: item().amount"></td>
+											<td><button
+													data-bind="attr: { id:  data().user.uid ,title: data().user.uid }"
+													class="openPlusForm">+-</button></td>
+										</tr>
+
+									</tbody>
+								</table>
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<center>
+				<input type="button" id="previousBtn" value="往前"	data-bind="  visible: !isFirstPage() , click: function(data, event) { plusPage('-1') }" />
+				<input type="button" id="nextBtn" value="往後" data-bind="  visible: !isLastPage() , click: function(data, event) { plusPage('1') }" />
+				<div class="pagination" data-bind="text: pageIdx"></div>
+			</center>
+
+			<footer class="footer text-center"> 2017 &copy; Pixel Admin
+				brought to you by wrappixel.com </footer>
+		</div>
+	</div>
+
+	<div id="pointDialog" title="點數操作">
+		<form>
+			<fieldset>
+				<div>
+					<label for="amount">請輸入欲增減點數</label> <input type="text"
+						name="amount" id="amount" placeholder="0"
+						class="text ui-widget-content ui-corner-all"
+						style="text-align: center;" /><br /> <span style="color: red">扣點請先輸入-</span>
+				</div>
+				<div style="margin-top: 25px;">
+					<label for="note">請輸入備註(非必填)</label> <input type="text" name="note"
+						id="note" class="text ui-widget-content ui-corner-all"
+						style="text-align: center;" />
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+
+	<script src="/assets/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+
+	<!-- Slimscroll JavaScript -->
+	<script src="/assets/lib/pixeladmin-lite/html/js/jquery.slimscroll.js"></script>
+	<!-- Wave Effects -->
+	<script src="/assets/lib/pixeladmin-lite/html/js/waves.js"></script>
+	<!-- jQuery UI JavaScript -->
+	<script src="/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+
+	<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var coinManagerPageSize = [[${@environment.getProperty('coinManagerPageSize')}]];
+   // alert(externalFetchReportUrl);
+
+/*]]>*/
+</script>
+
+
+</body>
+</html>
