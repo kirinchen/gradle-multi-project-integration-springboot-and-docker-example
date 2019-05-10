@@ -50,6 +50,8 @@ $ ./gradlew clean build
 ```
 or use Eclipse Task 
 
+![Image](buildscreen.png)
+
 ### run
 use Eclipse spring boot App
 
@@ -64,6 +66,7 @@ use Eclipse spring boot App
 $ ./gradlew SurfMAccout:docker
 ```
 or use Eclipse Task 
+![Image](dockerscreen.png)
 
 ### run docker to container
 ```
